@@ -50,7 +50,7 @@ objects:
             - healthplanner-frontend
           from:
             kind: ImageStreamTag
-            name: 'healthplanner-frontend'
+            name: 'healthplanner-frontend:latest'
     strategy:
       activeDeadlineSeconds: 21600
       resources: {}
