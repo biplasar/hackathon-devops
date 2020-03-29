@@ -11,12 +11,9 @@ then
       exit
 fi
 
-####### Create generic secret for code fetch within pipeline
-oc create secret generic health-planner-github-repo-access-secret --from-literal username=$1 --from-literal password=$2
-oc annotate secret health-planner-github-repo-access-secret build.openshift.io/source-secret-match-uri-1=https://github.com/rito206868/*
-
 #####Creating Jenkins Ephimeral instance
 oc new-app jenkins-ephemeral
+
 
 #####Creating Mongodb persistent database
 oc create -f ocs-mongodb-perst.yaml
@@ -25,7 +22,12 @@ oc new-app --name=mongo-healthplannerdb-36 --template=mongodb-persistent-ocs \
 							-p MONGODB_DATABASE=healthplannerdb \
 							-p MONGODB_ADMIN_PASSWORD=admin \
 							-p DATABASE_SERVICE_NAME=healthplannerdb
-							
+
+
+####### Create generic secret for code fetch within pipeline
+oc create secret generic health-planner-github-repo-access-secret --from-literal username=$1 --from-literal password=$2
+oc annotate secret health-planner-github-repo-access-secret build.openshift.io/source-secret-match-uri-1=https://github.com/rito206868/*
+						
 
 #####Create RedHat secret to use latest images for build from RedHat registries
 oc create -f 12925791_ibm-redhat-connect-secret.yaml
