@@ -6,7 +6,7 @@ try {
             stage('DEV Environment') {
                 git(url:"${DEVOPS_CODEBASE_GIT_REPO}",
                 branch:"${BRANCH_NAME}",
-                credentialsId:'health-planner-github-repo-webhook-secret')
+                credentialsId:'health-planner-github-repo-access-secret')
 
                 openshift.withCluster() {
                     openshift.withProject() {   
