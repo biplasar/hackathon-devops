@@ -1,0 +1,31 @@
+
+try {
+    timeout(time: 15, unit: 'MINUTES') {
+        node() {
+           
+            stage('DEV Environment') {
+                git(url:"${DEVOPS_CODEBASE_GIT_REPO}",
+                branch:"${BRANCH_NAME}",
+                credentialsId:'health-planner-github-repo-webhook-secret')
+
+                openshift.withCluster() {
+                    openshift.withProject() {   
+
+                        // create deployment resources
+                        openshift.apply(openshift.process(  "-f", 
+                                                            "./frontend/deployment/frontend-deployment-template.yaml"))
+
+                        def deployment = openshift.selector("dc/healthplanner-frontend")
+                        deployment.rollout().status() //follow progress
+                    }
+                }
+            }
+        }
+    }
+	
+} catch (err) {
+    echo "in catch block"
+    echo "Caught: ${err}"
+    currentBuild.result = 'FAILURE'
+    throw err
+}
