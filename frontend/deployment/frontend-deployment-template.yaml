@@ -29,7 +29,7 @@ objects:
           app: healthplanner-frontend
       spec:
         containers:
-          - image: healthplanner-frontend
+          - image: healthplanner-frontend:latest
             name: healthplanner-frontend
             imagePullPolicy: IfNotPresent
             resources:
