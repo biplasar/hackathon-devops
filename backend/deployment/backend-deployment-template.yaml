@@ -41,15 +41,6 @@ objects:
                 memory: 250Mi
         restartPolicy: Always
         terminationGracePeriodSeconds: 30
-    triggers:
-      - type: ImageChange
-        imageChangeParams:
-          automatic: true
-          containerNames:
-            - healthplanner-backend
-          from:
-            kind: ImageStreamTag
-            name: 'healthplanner-backend:latest'
     strategy:
       activeDeadlineSeconds: 21600
       resources: {}
