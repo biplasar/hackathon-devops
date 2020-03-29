@@ -39,26 +39,6 @@ objects:
               requests:
                 cpu: 100m
                 memory: 250Mi
-            livenessProbe:
-              failureThreshold: 3
-              httpGet:
-                path: "/actuator/health"
-                port: 8080
-                scheme: HTTP
-              initialDelaySeconds: 60
-              periodSeconds: 10
-              successThreshold: 1
-              timeoutSeconds: 30
-            readinessProbe:
-              failureThreshold: 3
-              httpGet:
-                path: "/actuator/health"
-                port: 8080
-                scheme: HTTP
-              initialDelaySeconds: 60
-              periodSeconds: 10
-              successThreshold: 1
-              timeoutSeconds: 30
         restartPolicy: Always
         terminationGracePeriodSeconds: 30
     triggers:
