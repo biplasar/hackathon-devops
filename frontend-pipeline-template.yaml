@@ -1,0 +1,71 @@
+apiVersion: v1
+kind: Template
+labels:
+  template: health-planner-frontend-pipeline-template
+message: |-
+  A Jenkins server must be instantiated in this project to manage
+  the Pipeline BuildConfig created by this template.  
+metadata:
+  annotations:
+    openshift.io/display-name: Pipeline Management Template
+    description: |-
+      This template defines   
+      1. Creates a build configs for build and deployment pipeline
+      2. TODOs : update description as more features are added into this template.
+    iconClass: icon-jenkins
+    tags: instant-app,jenkins
+  name: health-planner-frontend-pipeline-template
+parameters:
+- description: Branch Name of the git to use
+  displayName: Git Branch Name
+  name: RELEASE_BRANCH_NAME
+  required: true
+- description: Git repository of application source code
+  displayName: Application Source Code Git repository URL
+  name: APPLICATION_CODEBASE_GIT_REPO
+  required: true
+- description: Git repository of DevOps Project 
+  displayName: Devops project Git repository URL
+  name: DEVOPS_CODEBASE_GIT_REPO
+  required: true   
+objects:
+
+# This secret is used by Github to auto trigger the Jenkins Strategy Pipeline.
+
+- apiVersion: v1
+  kind: Secret
+  metadata:
+    name: health-planner-github-repo-webhook-secret
+    labels:
+      app: healthplanner-backend
+  data:
+    WebHookSecretKey: aGVhbHRocGxhbm5lcg==
+
+# This is a build pipeline for Health Planner Backend
+
+- apiVersion: v1
+  kind: BuildConfig
+  metadata:
+    labels:
+      app: healthplanner-frontend
+    name: healthplanner-frontend-build-pipeline
+  spec:
+    source:
+      git:
+        uri: "${APPLICATION_CODEBASE_GIT_REPO}"
+        ref: ${RELEASE_BRANCH_NAME}
+      contextDir: "build"
+    strategy:
+      jenkinsPipelineStrategy:
+        jenkinsfilePath: Jenkinsfile
+        env:
+          - name: APPLICATION_CODEBASE_GIT_REPO
+            value: ${APPLICATION_CODEBASE_GIT_REPO}
+          - name: BRANCH_NAME
+            value: ${RELEASE_BRANCH_NAME}
+      type: JenkinsPipeline
+    triggers:
+      - type: GitHub
+        github:
+          secretReference:
+            name: health-planner-github-repo-webhook-secret

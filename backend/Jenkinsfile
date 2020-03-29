@@ -3,7 +3,7 @@ try {
     timeout(time: 15, unit: 'MINUTES') {
         node() {
            
-            stage('DEV Environment') {
+            stage('Backend Deployment') {
                 git(url:"${DEVOPS_CODEBASE_GIT_REPO}",
                 branch:"${BRANCH_NAME}",
                 credentialsId:'health-planner-github-repo-access-secret')
