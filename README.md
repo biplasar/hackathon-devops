@@ -7,8 +7,11 @@
 * https://github.com/rito206868/patientInformationApp.git  --Frontend code on AngularJS
 ```
 
-* From backend code take the "build" folder, Dockerfile and pom.xml, as these has configurations needed
-* From frontend code take the "build" folder and the Dockerfile which are created for this DevOps pipelines
+* From backend code take the "build" folder, Dockerfile and pom.xml, as these have configurations needed
+* From frontend code take the "build" folder, gitignore and the Dockerfile which are created for this DevOps pipelines
+  Also, note due to build issue; for now "dest" folder is checked in and used during docker build within OpenShift.
+  
+* I have used S2I strategy for backend and Docker Strategy for frontend.
 
 Note: Above applications are just reference, any app with required configurations can be used.
 
@@ -27,7 +30,7 @@ $> ./setup.sh <GitHub_Username> <GitHub_Personal_Token> <OCP_Namespace> <Git_URL
 EXAMPLE: ./setup.sh rito206868 clkajdlkewqjd3284798247298 ritac041-in https://github.com/rito206868/*
 ```
 
-* Following script will create necessary pipelines for both fronend and backend application build and deployment
+* Following script will create necessary pipelines for both frontend and backend application build and deployment
 ```
 $> ./init-pipeline.sh <OCP_Namespace>
 EXAMPLE: ./init-pipeline.sh ritac041-in
