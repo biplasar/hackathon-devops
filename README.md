@@ -8,8 +8,8 @@
 ```
 
 * From backend code take the "build" folder, Dockerfile and pom.xml, as these have configurations needed
-* From frontend code take the "build" folder, gitignore and the Dockerfile which are created for this DevOps pipelines
-  Also, note due to build issue; for now "dest" folder is checked in and used during docker build within OpenShift.
+* From frontend code take the "build" folder, "nginx" folder, gitignore and the Dockerfile which are created for this DevOps pipelines.
+  Also, note due to build issue; for now "dist" folder is checked in and used during docker build within OpenShift.
   
 * I have used S2I strategy for backend and Docker Strategy for frontend.
 
