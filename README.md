@@ -24,7 +24,7 @@ Note: Above applications are just reference, any app with required configuration
 * Following script will create all necessary components and services before we begin code build and deployment
 ```
 $> ./setup.sh <GitHub_Username> <GitHub_Personal_Token> <OCP_Namespace> <Git_URL>
-EXAMPLE: ./setup.sh rito206868 60a7c0acaa019a3825d5f2ee271478a8ac3693a4 ritac041-in https://github.com/rito206868/*
+EXAMPLE: ./setup.sh rito206868 clkajdlkewqjd3284798247298 ritac041-in https://github.com/rito206868/*
 ```
 
 * Following script will create necessary pipelines for both fronend and backend application build and deployment
