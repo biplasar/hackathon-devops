@@ -1,5 +1,14 @@
 #!/bin/bash
-oc project ritac041-in
+
+if [ -z "$1" ]
+then
+      echo "Enter OCP namespace! Where resources will be recreated."
+      exit
+fi
+
+####Navigate to your
+oc project $1
+
 printf "\n\n\n"
 printf "Getting Webhook URL for backend pipeline"
 oc describe bc/healthplanner-backend-build-pipeline | grep webhooks | sed 's/<secret>/healthplanner/g' | sed 's/URL://g'

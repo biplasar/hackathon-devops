@@ -19,6 +19,13 @@ then
 
 fi
 
+if [ -z "$4" ]
+then
+      echo "GitHub URL under which all repositories belong"
+      exit
+
+fi
+
 # start time
 date +"%H:%M:%S"
 
@@ -52,7 +59,7 @@ sleep 15
 
 ####### Create generic secret for code fetch within pipeline
 oc create secret generic health-planner-github-repo-access-secret --from-literal username=$1 --from-literal password=$2
-oc annotate secret health-planner-github-repo-access-secret build.openshift.io/source-secret-match-uri-1=https://github.com/rito206868/*
+oc annotate secret health-planner-github-repo-access-secret build.openshift.io/source-secret-match-uri-1=$4
 						
 
 #####Create RedHat secret to use latest images for build from RedHat registries
@@ -65,6 +72,11 @@ sleep 5
 oc secrets link default 12925791-ibm-redhat-connect-pull-secret --for=pull
 oc secrets link builder 12925791-ibm-redhat-connect-pull-secret --for=pull
 oc secrets link jenkins 12925791-ibm-redhat-connect-pull-secret --for=pull
+
+echo -e "RedHat Secret is linked to respective serviceaccounts"
+
+# sleep for 5 seconds
+sleep 5
 
 #####Creating image stream for Java S2I build image
 oc import-image redhat-openjdk-18/openjdk18-openshift --from=registry.access.redhat.com/redhat-openjdk-18/openjdk18-openshift --confirm

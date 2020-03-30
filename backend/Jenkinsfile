@@ -6,7 +6,7 @@ try {
             stage('Backend Deployment') {
                 git(url:"${DEVOPS_CODEBASE_GIT_REPO}",
                 branch:"${BRANCH_NAME}",
-                credentialsId:"${NAMESPACE}-in-health-planner-github-repo-access-secret")
+                credentialsId:"${NAMESPACE}-health-planner-github-repo-access-secret")
 
                 openshift.withCluster() {
                     openshift.withProject() {   
