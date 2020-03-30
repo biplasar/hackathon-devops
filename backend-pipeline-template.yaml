@@ -27,7 +27,11 @@ parameters:
 - description: Git repository of DevOps Project 
   displayName: Devops project Git repository URL
   name: DEVOPS_CODEBASE_GIT_REPO
-  required: true   
+  required: true  
+- description: OCP Namespace for Applications 
+  displayName: OCP Namespace
+  name: NAMESPACE
+  required: true    
 objects:
 
 # This secret is used by Github to auto trigger the Jenkins Strategy Pipeline.
@@ -63,6 +67,8 @@ objects:
             value: ${APPLICATION_CODEBASE_GIT_REPO}
           - name: BRANCH_NAME
             value: ${RELEASE_BRANCH_NAME}
+          - name: NAMESPACE
+            value: ${NAMESPACE}
       type: JenkinsPipeline
     triggers:
       - type: GitHub
@@ -91,6 +97,8 @@ objects:
               value: ${DEVOPS_CODEBASE_GIT_REPO}
             - name: BRANCH_NAME
               value: ${RELEASE_BRANCH_NAME}
+            - name: NAMESPACE
+              value: ${NAMESPACE}
       type: JenkinsPipeline
     triggers:
       - type: GitHub

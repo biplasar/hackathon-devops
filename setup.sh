@@ -37,7 +37,7 @@ sleep 5
 oc create -f ocs-mongodb-perst.yaml
 
 
-# sleep for 5 seconds
+# sleep for 10 seconds
 sleep 10
 
 oc new-app --name=mongo-healthplannerdb-36 --template=mongodb-persistent-ocs \
@@ -46,7 +46,7 @@ oc new-app --name=mongo-healthplannerdb-36 --template=mongodb-persistent-ocs \
 							-p MONGODB_ADMIN_PASSWORD=admin \
 							-p DATABASE_SERVICE_NAME=healthplannerdb
 							
-# sleep for 5 seconds
+# sleep for 15 seconds
 sleep 15							
 
 
