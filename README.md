@@ -40,8 +40,7 @@ $> ./fetch-webhook.sh <OCP_Namespace>
 EXAMPLE: ./fetch-webhook.sh ritac041-in
 ```
 
-* Following script will print all Webhooks which are created through build-config in OCP. These webhooks needs to be 
-Configured in respective repositories in GitHub
+* Following script will delete all components created by this stack
 ```
 $> ./cleanup.sh <OCP_Namespace>
 EXAMPLE: ./cleanup.sh ritac041-in
