@@ -4,13 +4,12 @@
 
 ```
 * https://github.com/rito206868/healthplanner.git --Beckend code on Java-SpringBoot
-* https://github.com/rito206868/patientInformationApp.git  --Frontend code on AngularJS
+* https://github.com/rito206868/patientInformationApp.git  --Frontend code on AngularJS, Please check the docker file for application 
+                                                             folder name and update accordingly
 ```
 
 * From backend code take the "build" folder, Dockerfile and pom.xml, as these have configurations needed
-* From frontend code take the "build" folder, "nginx" folder, gitignore and the Dockerfile which are created for this DevOps pipelines.
-  Also, note due to build issue; for now "dist" folder is checked in and used during docker build within OpenShift.
-  
+* From frontend code take the "build" folder, "nginx" folder and the Dockerfile which are created for this DevOps pipelines.
 * I have used S2I strategy for backend and Docker Strategy for frontend.
 
 Note: Above applications are just reference, any app with required configurations can be used.
