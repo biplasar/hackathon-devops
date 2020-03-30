@@ -4,7 +4,8 @@
 
 ```
 * https://github.com/rito206868/healthplanner.git --Beckend code on Java-SpringBoot
-* https://github.com/rito206868/patientInformationApp.git  --Frontend code on AngularJS, Please check the docker file for application 
+* https://github.com/rito206868/patientInformationApp.git  --Frontend code on AngularJS
+                                                             Please check the docker file for application 
                                                              folder name and update accordingly
 ```
 
